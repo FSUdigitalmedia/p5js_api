@@ -7,18 +7,16 @@ function setup() {
   div.position(50, 50);
   div.style("font-size", "40px");
   background(125);
-  noLoop();
 }
 
 function draw() {
   if (got != undefined) div.html(got.activity);
-  noLoop();
+  if (frameCount % (60*5) == 0) reload();
 }
 
-function mouseClicked() {
+function reload() {
   let url = 'https://www.boredapi.com/api/activity?type=relaxation';
   loadJSON(url, "json", function(response) {
     got = response;
   });
-  loop();
 }
